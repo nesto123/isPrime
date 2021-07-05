@@ -3,6 +3,7 @@
  */
 package Algorithms;
 
+import database.DataBase;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -85,7 +86,7 @@ public class SolovayStrassen {
 	
 	private boolean solovoyStrassen()
 	{
-		
+		DataBase db = new DataBase();
 		if( n < 2  || ( n != 2 && n % 2 == 0))
 			return false;
 		if( n == 2)
@@ -104,7 +105,8 @@ public class SolovayStrassen {
 			int mod = MillerRabin.moduloPower(a,  (n - 1) / 2, n);
 			
 			if(jacob == 0 || mod != jacob)
-				return false;
+                            return false;
+                        else db.insert( integer, n );
 		}
 		
 		return true;

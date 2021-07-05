@@ -3,6 +3,8 @@
  */
 package Algorithms;
 
+import database.DataBase;
+
 /**
  * @author franv
  *
@@ -17,6 +19,7 @@ public class MillerRabin {
 	 */
 	public static boolean isPrime(int n, double certanty)
 	{
+            DataBase db = new DataBase();
             int k = (int) (Math.log(1/(1-certanty)) / Math.log(2) );
 
             if( n <= 1 || n == 4)
