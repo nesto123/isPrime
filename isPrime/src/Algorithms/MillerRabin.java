@@ -12,28 +12,30 @@ public class MillerRabin {
 	/**
 	 * Determines if number is a prime number.
 	 * @param n input number
-	 * @param k iteration number
+	 * @param certanty of test
 	 * @return true if number is prime, otherwise false
 	 */
-	public static boolean isPrime(int n, int k)
+	public static boolean isPrime(int n, double certanty)
 	{
-		if( n <= 1 || n == 4)
-			return false;
-		if( n == 2 || n == 3 )
-			return true;
-		
-		int d = n - 1;
-		
-		while( d % 2 == 0)
-		{
-			d /= 2;
-		}
-		
-		for(int i = 0; i < k; i++)
-			if( miller(n, d) == false )
-				return false;
-		
-		return true;		
+            int k = (int) (Math.log(1/(1-certanty)) / Math.log(2) );
+
+            if( n <= 1 || n == 4)
+                    return false;
+            if( n == 2 || n == 3 )
+                    return true;
+
+            int d = n - 1;
+
+            while( d % 2 == 0)
+            {
+                    d /= 2;
+            }
+
+            for(int i = 0; i < k; i++)
+                    if( miller(n, d) == false )
+                            return false;
+
+            return true;		
 	}
 	
 	/**

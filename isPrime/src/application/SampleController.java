@@ -47,7 +47,12 @@ public class SampleController {
 
     @FXML // fx:id="consoleTextArea"
     private TextArea consoleTextArea; // Value injected by FXMLLoadera
+    
+    @FXML
+    private TextField accurMillerTextField;
 
+    @FXML
+    private TextField accurSolovayTextField;
     
 	/////////////////////////////
     //		FUNCTIONS
@@ -61,24 +66,28 @@ public class SampleController {
     void calculateBottunOnClick(ActionEvent event) 
     {
     	int number;
+        long startTime, endTime;
+        double millerCertenty, solovayCertenty;
+        
     	try {
-    		number = Service.getInt(numberTextField.getText());
-    		consoleTextArea.appendText("Entered number: " + number + "\n");
+            number = Service.getInt(numberTextField.getText());
+            consoleTextArea.appendText("Entered number: " + number + "\n");
     	} catch (NumberFormatException  e) {
-			consoleTextArea.appendText("Invalid number input!\n");
-			//e.printStackTrace();
-			return;
-		}
-    	
+            consoleTextArea.appendText("Invalid number input!\n");
+            return;
+        }
+        
     	if(squareRootCheckBox.isSelected())
     	{
-    		try {
-				boolean test = Sqrt.isPrime( number );
-				consoleTextArea.appendText(Service.answer(test, "sqrt"));
-    		}catch (InterruptedException | ExecutionException e) {
-				consoleTextArea.appendText("Square root algotihm time-out!");
-			}
-		}
+            try {
+                startTime = System.currentTimeMillis();
+                boolean test = Sqrt.isPrime( number );
+                endTime = System.currentTimeMillis();
+                consoleTextArea.appendText(Service.answer(test, "sqrt", endTime - startTime));
+            }catch (InterruptedException | ExecutionException e) {
+                consoleTextArea.appendText("Square root algotihm time-out!");
+            }
+        }
 //		NOT IMPLEMENTED YET		--		TO DO...    	
 //    	if(wilsonCheckBox.isSelected())
 //    	{
@@ -91,14 +100,30 @@ public class SampleController {
 //		}
     	if(millerRabinCheckBox.isSelected())
     	{
-				boolean test = MillerRabin.isPrime( number, 21 );
-				consoleTextArea.appendText(Service.answer(test, "miller"));
-		}
+            try {
+                millerCertenty = Service.getCertenty(accurMillerTextField.getText());
+            } catch (NumberFormatException  e) {
+                consoleTextArea.appendText("Invalid Miller-Rabin certenty!\n");
+                return;
+            }
+            startTime = System.currentTimeMillis();
+            boolean test = MillerRabin.isPrime( number, millerCertenty );
+            endTime = System.currentTimeMillis();
+            consoleTextArea.appendText(Service.answer(test, "miller", endTime - startTime));
+        }
     	if(solovayCheckBox.isSelected())
     	{
-				boolean test = SolovayStrassen.isPrime( number, 0.95 );
-				consoleTextArea.appendText(Service.answer(test, "solovay"));
-		}
+            try {
+                solovayCertenty = Service.getCertenty(accurSolovayTextField.getText());
+            } catch (NumberFormatException  e) {
+                consoleTextArea.appendText("Invalid Solovay certenty!\n");
+                return;
+            }
+            startTime = System.currentTimeMillis();
+            boolean test = SolovayStrassen.isPrime( number, solovayCertenty );
+            endTime = System.currentTimeMillis();
+            consoleTextArea.appendText(Service.answer(test, "solovay", endTime - startTime));
+        }
     	
     	
 
