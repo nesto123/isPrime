@@ -10,6 +10,7 @@ import Algorithms.MillerRabin;
 import Algorithms.SolovayStrassen;
 import Algorithms.Sqrt;
 import Algorithms.Wilson;
+import database.DataBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,6 +55,18 @@ public class SampleController {
     @FXML
     private TextField accurSolovayTextField;
     
+    @FXML
+    private CheckBox pseudoCheckBox;
+    
+    @FXML
+    private TextField basePseudoTextField;
+    
+    @FXML
+    private Button pseudoButton;
+    
+    @FXML
+    private Button strongButton;
+    
 	/////////////////////////////
     //		FUNCTIONS
     ////////////////////////////
@@ -65,7 +78,7 @@ public class SampleController {
     @FXML
     void calculateBottunOnClick(ActionEvent event) 
     {
-    	int number;
+    	int number, base;
         long startTime, endTime;
         double millerCertenty, solovayCertenty;
         
@@ -124,9 +137,36 @@ public class SampleController {
             endTime = System.currentTimeMillis();
             consoleTextArea.appendText(Service.answer(test, "solovay", endTime - startTime));
         }
-    	
-    	
+    	if( pseudoCheckBox.isSelected() ){
+            try {
+                base = Integer.parseInt(basePseudoTextField.getText() );
+            } catch (NumberFormatException  e) {
+                consoleTextArea.appendText("Invalid base input!\n");
+                return;
+            }
+            DataBase db = new DataBase( "dbase.db" );
+            startTime = System.currentTimeMillis();
+            boolean test = db.checkEuler(base, number);
+            endTime = System.currentTimeMillis();
+            consoleTextArea.appendText( Service.answerPseudo( test, "pseudo", endTime - startTime));
+            startTime = System.currentTimeMillis();
+            test = db.checkStrong(base, number);
+            endTime = System.currentTimeMillis();
+            consoleTextArea.appendText( Service.answerPseudo( test, "strong", endTime - startTime));
+        }
 
+    }
+    
+    @FXML
+    void pseudoButtonOnClick(ActionEvent event) 
+    {
+        System.out.println( "Klika" );
+    }
+    
+    @FXML
+    void strongButtonOnClick( ActionEvent event )
+    {
+        System.out.println( "strong" );
     }
     
     /**

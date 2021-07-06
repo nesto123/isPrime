@@ -57,13 +57,16 @@
                                        </columnConstraints>
                                        <rowConstraints>
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <Button id="calculateButton" fx:id="calculateButton" mnemonicParsing="false" onAction="#calculateBottunOnClick" prefHeight="25.0" prefWidth="184.0" text="Calculate" />
-                                          <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetBottunOnClick" prefHeight="25.0" prefWidth="143.0" text="Reset" GridPane.columnIndex="1" />
+                                          <Button id="calculateButton" fx:id="calculateButton" mnemonicParsing="false" onAction="#calculateBottunOnClick" prefHeight="25.0" prefWidth="184.0" text="Calculate" GridPane.rowIndex="1" />
+                                          <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetBottunOnClick" prefHeight="25.0" prefWidth="143.0" text="Reset" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Button id="pseudoButton" mnemonicParsing="false" onAction="#pseudoButtonOnClick" prefHeight="25.0" prefWidth="144.0" text="Pseudoprimes" />
+                                          <Button fx:id="strongButton" mnemonicParsing="false" onAction="#strongButtonOnClick" prefHeight="25.0" prefWidth="144.0" text="Strong pseudoprimes" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <VBox layoutY="-15.0" prefHeight="393.0" prefWidth="262.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <VBox layoutY="-15.0" prefHeight="306.0" prefWidth="290.0" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <Label text="Is number prime">
                                              <font>
@@ -103,6 +106,7 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
                                                 <CheckBox fx:id="squareRootCheckBox" mnemonicParsing="false" selected="true" text="Square root division" />
@@ -115,6 +119,9 @@
                                                 <TextField fx:id="accurSolovayTextField" promptText="95.00" text="95.00" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                                 <Label text="\%" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                                                 <Label text="\%" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                                <CheckBox fx:id="pseudoCheckBox" mnemonicParsing="false" selected="true" text="Pseudoprime" GridPane.rowIndex="4" />
+                                                <Label text="Base" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <TextField fx:id="basePseudoTextField" text="2" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                                              </children>
                                           </GridPane>
                                        </children>

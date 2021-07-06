@@ -76,5 +76,24 @@ public class Service {
 		return str;
 	}
         
-
+        public static String answerPseudo( boolean flag, String algorithm, long time ){
+            String str = "> Entered number ";
+            if( flag ){
+                str += "is a ";
+            }
+            else{
+                str += "is NOT a ";
+            }
+            if( algorithm.equals( "pseudo" ) )
+            {
+                str += "Euler pseudoprime number.\n>> Time: " + time + "ms.\n";
+            }
+            else if( algorithm.equals( "strong" ) ){
+                str += "strong pseudoprime number.\n>> Time: " + time + "ms.\n";         
+            }
+            else{
+                return "> Algorithm undefined!";
+            }
+            return str;
+        }
 }
