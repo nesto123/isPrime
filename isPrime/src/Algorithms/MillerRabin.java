@@ -4,6 +4,7 @@
 package Algorithms;
 
 import database.DataBase;
+import java.util.Random;
 
 /**
  * @author franv
@@ -19,7 +20,7 @@ public class MillerRabin {
 	 */
 	public static boolean isPrime(int n, double certanty)
 	{
-            DataBase db = new DataBase();
+
             int k = (int) (Math.log(1/(1-certanty)) / Math.log(2) );
 
             if( n <= 1 || n == 4)
@@ -49,19 +50,26 @@ public class MillerRabin {
 	 */
 	private static boolean miller(int n, int d)
 	{
-		int a = 2 + (int) (Math.random() % (n - 4));
+            Random rand = new Random();
+                DataBase db = new DataBase( "dbase.db" );
+		int a = rand.nextInt( (n-1)  - 1 + 1 ) + 1;
+		//int a = 2 + (int) (Math.random() % (n - 4));
 		
 		int x = moduloPower(a, d, n);
 		
-		if( x == 1 || x == n - 1)
-			return true;
+		if( x == 1 || x == n - 1){
+                    if( x == 1 ) db.insertStrong( a, n );
+                    return true;
+                }
 		
 		for( ; d != n-1; x = (x * x) % n, d *= 2)
 		{
 			if( x == 1)
 				return false;
-			if( x == n - 1)
-				return true;
+			if( x == n - 1){
+                            db.insertStrong( a, n );
+                            return true;
+                        }
 		}
 		
 		return false;
@@ -93,9 +101,9 @@ public class MillerRabin {
 	 * Testing function.
 	 * @param args none
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
-	}
+	}*/
 	
 	
 }

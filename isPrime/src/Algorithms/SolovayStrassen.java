@@ -86,7 +86,7 @@ public class SolovayStrassen {
 	
 	private boolean solovoyStrassen()
 	{
-		DataBase db = new DataBase();
+		DataBase db = new DataBase( "dbase.db" );
 		if( n < 2  || ( n != 2 && n % 2 == 0))
 			return false;
 		if( n == 2)
@@ -95,7 +95,7 @@ public class SolovayStrassen {
 		ArrayList<Integer> list = new ArrayList<>();
 		Random random = new Random();
 		
-		for (int i = 0; i < k; i++) 
+		/*for (int i = 0; i < k; i++) 
 			// nextInt((max - min) + 1) + min;
 			list.add( random.nextInt( (n-1)  - 1 + 1 ) + 1 ); 
 		
@@ -106,10 +106,23 @@ public class SolovayStrassen {
 			
 			if(jacob == 0 || mod != jacob)
                             return false;
-                        else db.insert( integer, n );
+                        else db.insertEuler( integer, n );
 		}
 		
-		return true;
+		return true;*/
+                
+                for( int i = 0; i < k; i++ ){
+                int integer = random.nextInt( (n-1)  - 1 + 1 ) + 1;
+                while( list.contains( integer ) )
+                    integer = random.nextInt( (n-1)  - 1 + 1 ) + 1;
+                list.add( integer );
+                //System.out.println( integer );
+                int jacob = (int) jacobian( integer, n );
+                int mod = MillerRabin.moduloPower(integer, (n-1)/2, n);
+                if( jacob != mod && jacob != ( mod - n )) return false;
+                else db.insertEuler( integer, n );
+            }
+            return true;
 	}
 	
 	/**
@@ -130,10 +143,10 @@ public class SolovayStrassen {
 	 * Testing function.
 	 * @param args none
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		
-	}
+	}*/
 
 }

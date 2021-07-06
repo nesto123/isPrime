@@ -19,12 +19,19 @@ import java.sql.ResultSet;
  * @author zialen
  */
 public class DataBase {
-    String dataBaseName = "dbase.db";
-    String url = "jdbc:sqlite:" + dataBaseName;
+    String dataBaseName;
+    String url;
     
-    public DataBase(){
+    public DataBase( String name ){
+        dataBaseName = name;
+        url = "jdbc:sqlite:" + dataBaseName;
         if( !(new File( dataBaseName ).isFile() ) ){
             String sql = "CREATE TABLE IF NOT EXISTS euler (\n"
+                + " id integer PRIMARY KEY,\n"
+                + " baza integer NOT NULL,\n"
+                + " broj integer NOT NULL\n"
+                + ");";
+            String sql2 = "CREATE TABLE IF NOT EXISTS strong (\n"
                 + " id integer PRIMARY KEY,\n"
                 + " baza integer NOT NULL,\n"
                 + " broj integer NOT NULL\n"
@@ -36,6 +43,7 @@ public class DataBase {
                     System.out.println( "Ime biblioteke za rad s bazom podataka " + meta.getDriverName() );
                     System.out.println( "Stvorena je nova baza" );
                     stmt.execute( sql );
+                    stmt.execute( sql2 );
                 }
             } catch( SQLException e ){
                 System.out.println( e.getMessage() );
@@ -43,7 +51,7 @@ public class DataBase {
         }
     }
     
-    public void insert( int baza, int broj ){
+    public void insertEuler( int baza, int broj ){
         String  sql = "INSERT  INTO  euler(baza, broj) VALUES (?,?)";
         try( Connection conn = DriverManager.getConnection( url ) ) {
             PreparedStatement pstmt = conn.prepareStatement( sql );
@@ -55,8 +63,37 @@ public class DataBase {
         }
     }
     
-    public boolean check( int baza, int broj ){
-        String sql = "SELECT baza FROM osobe WHERE broj  ?";
+    public boolean checkEuler( int baza, int broj ){
+        String sql = "SELECT baza FROM euler WHERE broj = ?";
+        try( Connection conn = DriverManager.getConnection( url ) ) {
+            PreparedStatement pstmt = conn.prepareStatement( sql );
+            pstmt.setInt( 1, broj );
+            ResultSet rs = pstmt.executeQuery();
+            while( rs.next() ){
+                int b = rs.getInt( "baza" );
+                if( b == baza ) return true;
+            }
+            return false;
+        } catch( SQLException e ){
+            System.out.println( e.getMessage() );
+            return false;
+        }
+    }
+    
+    public void insertStrong( int baza, int broj ){
+        String  sql = "INSERT  INTO  strong(baza, broj) VALUES (?,?)";
+        try( Connection conn = DriverManager.getConnection( url ) ) {
+            PreparedStatement pstmt = conn.prepareStatement( sql );
+            pstmt.setInt( 1, baza );
+            pstmt.setInt( 2, broj );
+            pstmt.executeUpdate();
+        } catch( SQLException e ){
+            System.out.println( e.getMessage() );
+        }
+    }
+    
+    public boolean checkStrong( int baza, int broj ){
+        String sql = "SELECT baza FROM strong WHERE broj = ?";
         try( Connection conn = DriverManager.getConnection( url ) ) {
             PreparedStatement pstmt = conn.prepareStatement( sql );
             pstmt.setInt( 1, broj );
