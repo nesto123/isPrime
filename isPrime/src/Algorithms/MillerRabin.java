@@ -58,7 +58,10 @@ public class MillerRabin {
 		int x = moduloPower(a, d, n);
 		
 		if( x == 1 || x == n - 1){
-                    if( x == 1 ) db.insertStrong( a, n );
+                    if( x == 1 ) {
+                        db.insertStrong( a, n );
+                        db.insertEuler( a, n );
+                    }
                     return true;
                 }
 		
@@ -68,6 +71,7 @@ public class MillerRabin {
 				return false;
 			if( x == n - 1){
                             db.insertStrong( a, n );
+                            db.insertEuler( a, n );
                             return true;
                         }
 		}

@@ -62,7 +62,7 @@
                                        <children>
                                           <Button id="calculateButton" fx:id="calculateButton" mnemonicParsing="false" onAction="#calculateBottunOnClick" prefHeight="25.0" prefWidth="184.0" text="Calculate" GridPane.rowIndex="1" />
                                           <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetBottunOnClick" prefHeight="25.0" prefWidth="143.0" text="Reset" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Button id="pseudoButton" mnemonicParsing="false" onAction="#pseudoButtonOnClick" prefHeight="25.0" prefWidth="144.0" text="Pseudoprimes" />
+                                          <Button id="pseudoButton" mnemonicParsing="false" onAction="#pseudoButtonOnClick" prefHeight="25.0" prefWidth="144.0" text="Euler Pseudoprimes" />
                                           <Button fx:id="strongButton" mnemonicParsing="false" onAction="#strongButtonOnClick" prefHeight="25.0" prefWidth="144.0" text="Strong pseudoprimes" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>

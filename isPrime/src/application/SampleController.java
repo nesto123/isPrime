@@ -4,11 +4,13 @@
 
 package application;
 
+import Algorithms.EulerPseudo;
 import java.util.concurrent.ExecutionException;
 
 import Algorithms.MillerRabin;
 import Algorithms.SolovayStrassen;
 import Algorithms.Sqrt;
+import Algorithms.StrongPseudo;
 import Algorithms.Wilson;
 import database.DataBase;
 import javafx.event.ActionEvent;
@@ -147,13 +149,18 @@ public class SampleController {
             DataBase db = new DataBase( "dbase.db" );
             startTime = System.currentTimeMillis();
             boolean test = db.checkEuler(base, number);
+            if( !test )
+                test = EulerPseudo.isPseudo( number, base );
             endTime = System.currentTimeMillis();
             consoleTextArea.appendText( Service.answerPseudo( test, "pseudo", endTime - startTime));
             startTime = System.currentTimeMillis();
             test = db.checkStrong(base, number);
+            if( !test )
+                test = StrongPseudo.isPseudo( number, base );
             endTime = System.currentTimeMillis();
             consoleTextArea.appendText( Service.answerPseudo( test, "strong", endTime - startTime));
         }
+        consoleTextArea.appendText( "------------------------------------------------------------\n" );
 
     }
     

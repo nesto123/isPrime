@@ -86,10 +86,10 @@ public class Service {
             }
             if( algorithm.equals( "pseudo" ) )
             {
-                str += "Euler pseudoprime number.\n>> Time: " + time + "ms.\n";
+                str += "Euler pseudoprime number in entered base.\n>> Time: " + time + "ms.\n";
             }
             else if( algorithm.equals( "strong" ) ){
-                str += "strong pseudoprime number.\n>> Time: " + time + "ms.\n";         
+                str += "strong pseudoprime number in entered base.\n>> Time: " + time + "ms.\n";         
             }
             else{
                 return "> Algorithm undefined!";

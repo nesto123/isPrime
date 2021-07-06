@@ -40,7 +40,7 @@ public class SolovayStrassen {
 	 * @param n denominator
 	 * @return result of jacobian (a/n)
 	 */
-	private long jacobian(long a, long n)
+	public static long jacobian(long a, long n)
 	{
 		if (n <= 0 || n % 2 == 0)
 			return 0;

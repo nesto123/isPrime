@@ -53,11 +53,20 @@ public class DataBase {
     
     public void insertEuler( int baza, int broj ){
         String  sql = "INSERT  INTO  euler(baza, broj) VALUES (?,?)";
+        String chck = "SELECT id FROM euler WHERE baza = ? AND broj = ?";
         try( Connection conn = DriverManager.getConnection( url ) ) {
-            PreparedStatement pstmt = conn.prepareStatement( sql );
-            pstmt.setInt( 1, baza );
-            pstmt.setInt( 2, broj );
-            pstmt.executeUpdate();
+            PreparedStatement ps = conn.prepareStatement( chck );
+            ps.setInt ( 1, baza );
+            ps.setInt ( 2, broj );
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return;
+            } else {
+                PreparedStatement pstmt = conn.prepareStatement( sql );
+                pstmt.setInt( 1, baza );
+                pstmt.setInt( 2, broj );
+                pstmt.executeUpdate();
+            }
         } catch( SQLException e ){
             System.out.println( e.getMessage() );
         }
@@ -82,11 +91,21 @@ public class DataBase {
     
     public void insertStrong( int baza, int broj ){
         String  sql = "INSERT  INTO  strong(baza, broj) VALUES (?,?)";
+        String chck = "SELECT id FROM strong WHERE baza = ? AND broj = ?";
         try( Connection conn = DriverManager.getConnection( url ) ) {
-            PreparedStatement pstmt = conn.prepareStatement( sql );
-            pstmt.setInt( 1, baza );
-            pstmt.setInt( 2, broj );
-            pstmt.executeUpdate();
+            PreparedStatement ps = conn.prepareStatement( chck );
+            ps.setInt ( 1, baza );
+            ps.setInt ( 2, broj );
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return;
+            } 
+            else {
+                PreparedStatement pstmt = conn.prepareStatement( sql );
+                pstmt.setInt( 1, baza );
+                pstmt.setInt( 2, broj );
+                pstmt.executeUpdate();
+            }
         } catch( SQLException e ){
             System.out.println( e.getMessage() );
         }
