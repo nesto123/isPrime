@@ -111,7 +111,7 @@ public class SolovayStrassen {
 		
 		return true;*/
                 
-                for( int i = 0; i < k; i++ ){
+            for( int i = 0; i < k; i++ ){
                 int integer = random.nextInt( (n-1)  - 1 + 1 ) + 1;
                 while( list.contains( integer ) )
                     integer = random.nextInt( (n-1)  - 1 + 1 ) + 1;
@@ -119,6 +119,7 @@ public class SolovayStrassen {
                 //System.out.println( integer );
                 int jacob = (int) jacobian( integer, n );
                 int mod = MillerRabin.moduloPower(integer, (n-1)/2, n);
+                //System.out.println( "SS: " + jacob + " " + mod );
                 if( jacob != mod && jacob != ( mod - n )) return false;
                 else db.insertEuler( integer, n );
             }

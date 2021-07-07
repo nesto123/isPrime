@@ -34,7 +34,8 @@ public class StrongPseudo {
             return true;
         }
 
-        for( ; d != n-1; x = (x * x) % n, d *= 2)
+        //for( ; d != n-1; x = (x * x) % n, d *= 2)
+        for( d = d * 2 ; d <= n-1; x = MillerRabin.moduloPower( base, d, n ), d *= 2)
         {
                 if( x == 1)
                         return false;

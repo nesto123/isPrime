@@ -23,7 +23,6 @@ public class EulerPseudo {
         DataBase db = new DataBase( "dbase.db" );
         int jacob = (int)SolovayStrassen.jacobian( base, n );
         int mod = MillerRabin.moduloPower( base, (n - 1) / 2, n );
-        System.out.println( jacob + " " + mod );
         if( jacob != mod && jacob != ( mod - n )) return false;
         else db.insertEuler( base, n );
         return true;
