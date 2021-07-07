@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/zialen/FAKS/JavaMIhelcic/isPrime/isPrime/src/application/Main.java</file>
-            <file>file:/home/zialen/FAKS/JavaMIhelcic/isPrime/isPrime/src/Algorithms/SolovayStrassen.java</file>
+            <file>file:/home/zialen/FAKS/JavaMIhelcic/isPrime/isPrime/src/Algorithms/Sqrt.java</file>
             <file>file:/home/zialen/FAKS/JavaMIhelcic/isPrime/isPrime/src/application/SampleController.java</file>
-            <file>file:/home/zialen/FAKS/JavaMIhelcic/isPrime/isPrime/src/Algorithms/MillerRabin.java</file>
             <file>file:/home/zialen/FAKS/JavaMIhelcic/isPrime/isPrime/src/application/Service.java</file>
-            <file>file:/home/zialen/FAKS/JavaMIhelcic/isPrime/isPrime/src/Algorithms/StrongPseudo.java</file>
-            <file>file:/home/zialen/FAKS/JavaMIhelcic/isPrime/isPrime/src/Algorithms/EulerPseudo.java</file>
+            <file>file:/home/zialen/FAKS/JavaMIhelcic/isPrime/isPrime/test/application/ServiceTest.java</file>
             <file>file:/home/zialen/FAKS/JavaMIhelcic/isPrime/isPrime/src/database/DataBase.java</file>
         </group>
     </open-files>

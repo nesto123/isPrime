@@ -15,10 +15,14 @@ import Algorithms.Wilson;
 import database.DataBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * Controller for app.
@@ -167,13 +171,37 @@ public class SampleController {
     @FXML
     void pseudoButtonOnClick(ActionEvent event) 
     {
-        System.out.println( "Klika" );
+        Stage secondaryStage = new Stage();
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Table.fxml"));
+            TableController controller = new TableController( "euler" );
+            loader.setController(controller);
+            Parent root = loader.load();
+            secondaryStage.setTitle("Euler pseudoprimes");
+            secondaryStage.setScene(new Scene(root, 600,400));
+            secondaryStage.setResizable( false );
+            secondaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     @FXML
     void strongButtonOnClick( ActionEvent event )
     {
-        System.out.println( "strong" );
+        Stage secondaryStage = new Stage();
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Table.fxml"));
+            TableController controller = new TableController( "strong" );
+            loader.setController(controller);
+            Parent root = loader.load();
+            secondaryStage.setTitle("Strong pseudoprimes");
+            secondaryStage.setScene(new Scene(root, 600,400));
+            secondaryStage.setResizable( false );
+            secondaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     /**
