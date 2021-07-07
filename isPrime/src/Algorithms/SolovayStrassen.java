@@ -132,7 +132,7 @@ public class SolovayStrassen {
 	 * @param certanty percentage
 	 * @return true if n is a prim number, otherwise false
 	 */
-	public static boolean isPrime( int n, double certanty)
+	public static boolean isPrime( int n, double certanty )
 	{
 		int basesNo = (int) (Math.log(1/(1-certanty)) / Math.log(2) );
 		SolovayStrassen alg = new SolovayStrassen(n, basesNo);

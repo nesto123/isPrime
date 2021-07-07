@@ -45,16 +45,18 @@ public class Sqrt implements Callable<Boolean> {
    /**
     *  Is prime Function for sqrt algorithm.
     * @param n input number
+    * @param i number of processors currently in use
     * @return true if n is a prime number
     * @throws InterruptedException some
     * @throws ExecutionException some
     */
-   public static boolean isPrime(int n) throws InterruptedException, ExecutionException
+   public static boolean isPrime(int n, int i ) throws InterruptedException, ExecutionException
    {
 
        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()-1);
        List<Sqrt> primeCheckers = new ArrayList<>();
-       double blockSize = (double) n / (Runtime.getRuntime().availableProcessors()-1);
+       double processorNum = (double) n / (Runtime.getRuntime().availableProcessors()-i);
+       double blockSize = Math.max( processorNum, 1 );
        
        for (int x=0; x<Runtime.getRuntime().availableProcessors()-1; x++)
        {

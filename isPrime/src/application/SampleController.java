@@ -30,6 +30,8 @@ import javafx.stage.Stage;
  *
  */
 public class SampleController {
+    
+    private static int processorNum = 1;
 
     @FXML // fx:id="calculateButton"
     private Button calculateButton; // Value injected by FXMLLoader
@@ -73,6 +75,9 @@ public class SampleController {
     @FXML
     private Button strongButton;
     
+    @FXML
+    private Button timeButton;
+    
 	/////////////////////////////
     //		FUNCTIONS
     ////////////////////////////
@@ -100,7 +105,7 @@ public class SampleController {
     	{
             try {
                 startTime = System.currentTimeMillis();
-                boolean test = Sqrt.isPrime( number );
+                boolean test = Sqrt.isPrime( number, processorNum );
                 endTime = System.currentTimeMillis();
                 consoleTextArea.appendText(Service.answer(test, "sqrt", endTime - startTime));
             }catch (InterruptedException | ExecutionException e) {
@@ -168,6 +173,10 @@ public class SampleController {
 
     }
     
+    /**
+     * Opens new window with list of discovered Euler pseudoprimes
+     * @param event 
+     */
     @FXML
     void pseudoButtonOnClick(ActionEvent event) 
     {
@@ -186,6 +195,10 @@ public class SampleController {
         }
     }
     
+    /**
+     * Open new window with list of discovere strong pseudoprimes
+     * @param event 
+     */
     @FXML
     void strongButtonOnClick( ActionEvent event )
     {
@@ -202,6 +215,35 @@ public class SampleController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    /**
+     * Open new window with calculated time comparison for all available algorithms
+     * @param event 
+     */
+    @FXML
+    void timeButtonOnClick( ActionEvent event ){
+        Stage tertiaryStage = new Stage();
+        try{
+            processorNum += 1;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Graph.fxml"));
+            GraphController controller = new GraphController( processorNum );
+            loader.setController( controller );
+            Parent root = loader.load();
+            tertiaryStage.setTitle("Time comparison");
+            tertiaryStage.setScene(new Scene(root, 600,400));
+            tertiaryStage.setResizable( false );
+            tertiaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Decreases value of processorNum variable by 1.
+     */
+    public static void decreaseProcessorNum(){
+        processorNum -= 1;
     }
     
     /**

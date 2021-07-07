@@ -35,8 +35,8 @@ public class SqrtTest {
         System.out.println("isPrime");
         int n = 101, n2 = 49;
         boolean expResult = true, er2 = false;
-        boolean result = Sqrt.isPrime(n);
-        boolean res2 = Sqrt.isPrime( n2 );
+        boolean result = Sqrt.isPrime(n, 1 );
+        boolean res2 = Sqrt.isPrime( n2, 1 );
         assertEquals(expResult, result);
         assertEquals( er2, res2 );
     }
