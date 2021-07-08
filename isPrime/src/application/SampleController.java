@@ -13,17 +13,13 @@ import Algorithms.Sqrt;
 import Algorithms.StrongPseudo;
 import Algorithms.Wilson;
 import database.DataBase;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
 
 /**
  * Controller for app.
@@ -32,8 +28,12 @@ import javafx.stage.Stage;
  */
 public class SampleController {
     
+
     private static int processorNum = 1;
 
+    @FXML
+    private GridPane buttonsGrid;
+        
     @FXML // fx:id="calculateButton"
     private Button calculateButton; // Value injected by FXMLLoader
 
@@ -76,12 +76,16 @@ public class SampleController {
     @FXML
     private Button strongButton;
     
-    @FXML
-    private Button timeButton;
+
+    
+    
+    @FXML // fx:id="timeCompButton"
+    private Button timeCompButton; // Value injected by FXMLLoader
     
 	/////////////////////////////
     //		FUNCTIONS
     ////////////////////////////
+       
     
     /**
      * Controller for button click calculate.

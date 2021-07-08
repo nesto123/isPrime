@@ -50,7 +50,7 @@
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="247.0">
                                  <children>
-                                    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <GridPane fx:id="buttonsGrid" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -61,14 +61,14 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <Button id="calculateButton" fx:id="calculateButton" mnemonicParsing="false" onAction="#calculateBottunOnClick" prefHeight="25.0" prefWidth="184.0" text="Calculate" GridPane.rowIndex="2" />
-                                          <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetBottunOnClick" prefHeight="25.0" prefWidth="143.0" text="Reset" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Button id="pseudoButton" mnemonicParsing="false" onAction="#pseudoButtonOnClick" prefHeight="25.0" prefWidth="184.0" text="Euler Pseudoprimes" GridPane.rowIndex="1" />
-                                          <Button fx:id="strongButton" mnemonicParsing="false" onAction="#strongButtonOnClick" prefHeight="25.0" prefWidth="144.0" text="Strong pseudoprimes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Button id="timeButton" mnemonicParsing="false" onAction="#timeButtonOnClick" prefHeight="30.0" prefWidth="300.0" text="Time comparisons" GridPane.columnSpan="2147483647" />
+                                          <Button id="calculateButton" fx:id="calculateButton" mnemonicParsing="false" onAction="#calculateBottunOnClick" maxWidth="1.7976931348623157E308" text="Calculate" GridPane.rowIndex="2" />
+                                          <Button fx:id="resetButton" maxWidth="1.7976931348623157E308" onAction="#resetBottunOnClick" text="Reset" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Button id="pseudoButton" mnemonicParsing="false" onAction="#pseudoButtonOnClick" maxWidth="1.7976931348623157E308" text="Euler Pseudoprimes" GridPane.rowIndex="1" />
+                                          <Button fx:id="strongButton" mnemonicParsing="false" onAction="#strongButtonOnClick" maxWidth="1.7976931348623157E308" text="Strong pseudoprimes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Button id="timeButton" fx:id="timeCompButton" mnemonicParsing="false" onAction="#timeButtonOnClick" maxWidth="1.7976931348623157E308" text="Time comparisons" GridPane.columnSpan="2147483647" />
                                        </children>
                                     </GridPane>
-                                    <VBox layoutY="-15.0" prefHeight="306.0" prefWidth="290.0" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+                                    <VBox layoutY="-15.0" prefHeight="306.0" prefWidth="290.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <Label text="Is number prime">
                                              <font>
