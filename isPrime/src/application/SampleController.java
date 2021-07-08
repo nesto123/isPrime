@@ -76,9 +76,6 @@ public class SampleController {
     @FXML
     private Button strongButton;
     
-
-    
-    
     @FXML // fx:id="timeCompButton"
     private Button timeCompButton; // Value injected by FXMLLoader
     
