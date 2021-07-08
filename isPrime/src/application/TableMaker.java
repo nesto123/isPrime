@@ -6,36 +6,38 @@
 package application;
 
 import database.DataBase;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.Pane;
+import javax.swing.*;
 
 /**
  *
  * @author zialen
  */
-public class TableController {
-    @FXML
-    private TextArea tableTextArea;
-    String pseudo;
-
-    public TableController( String s ) {
-        this.pseudo = s ;
+public class TableMaker implements Runnable{
+    private String pseudo;
+    
+    public TableMaker( String type ){
+        this.pseudo = type;
     }
-
-    public TableController() {
+    
+    public TableMaker(){
         this( "euler" );
     }
-
-    @FXML
-    void initialize(){
-        List<Integer> list = new ArrayList<Integer>();
+    
+    @Override
+    public void run(){
+        String title = "";
+        if( pseudo == "euler" ) title = "Euler pseudoprimes";
+        else title = "Strong pseudoprimes";
+        JFrame frame = new JFrame( title );
+        frame.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
+        String s = "";
+        java.util.List<Integer> list = new ArrayList<Integer>();
         DataBase db = new DataBase( "dbase.db" );
         list = db.getAllBases( pseudo );
         Set<Integer> set = new HashSet<>(list);
@@ -43,26 +45,36 @@ public class TableController {
         list.addAll(set);
         Collections.sort( list );
         Iterator<Integer> listIterator = list.iterator();
-        tableTextArea.appendText( "Base         Numbers\n"
+        s += "Base         Numbers\n"
                 + "--------------------------------------------------------------------------------------------------"
-                    + "---------------------\n");
+                    + "---------------------\n";
         while (listIterator.hasNext()) {
             int base = listIterator.next();
-            tableTextArea.appendText( base + ": " );
-            List<Integer> numbers = new ArrayList<Integer>();
+            s += base + ": ";
+            java.util.List<Integer> numbers = new ArrayList<Integer>();
             numbers = db.getNumbers( pseudo, base );
             Set<Integer> num = new HashSet<>(numbers);
             numbers.clear();
             numbers.addAll(num);
             Collections.sort( numbers );
-            String s = "";
+            //String temp = "";
             Iterator<Integer> numbersIterator = numbers.iterator();
             while (numbersIterator.hasNext())
                 s += (numbersIterator.next() + ", " );
             s = s.substring(0, s.length() - 2);
-            tableTextArea.appendText( s + "\n"
+            s += "\n"
                 + "--------------------------------------------------------------------------------------------------"
-                    + "---------------------\n");
+                    + "---------------------\n";
         }
+        JTextArea tableTextArea = new JTextArea( s );
+        JScrollPane scroll = new JScrollPane(tableTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        tableTextArea.setRows(30);
+        tableTextArea.setEditable( false );
+        //frame.getContentPane().add( tableTextArea, BorderLayout.CENTER );
+        frame.getContentPane().add( scroll, BorderLayout.CENTER );
+        frame.setLocationRelativeTo( null );
+        frame.pack();
+        frame.setVisible( true );
+        SampleController.decreaseProcessorNum();
     }
 }

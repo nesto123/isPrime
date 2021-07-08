@@ -12,7 +12,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.JFrame;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -24,16 +29,22 @@ import org.jfree.data.xy.XYSeriesCollection;
  *
  * @author zialen
  */
-public class GraphService implements Runnable{
-    
+public class GraphMaker implements Runnable{
     private int processorNum;
     
-    private GraphService( int processorNum ){
+    public GraphMaker( int processorNum ){
         this.processorNum = processorNum;
+    }
+    
+    public GraphMaker(){
+        this( 1 );
     }
     
     @Override
     public void run(){
+        JFrame frame = new JFrame( "Euler pseudoprimes" );
+        frame.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
+        //------------------------------------------------------------
         int n;
         long start, end;
         ArrayList<ArrayList<Long>> times = new ArrayList<>();
@@ -89,15 +100,22 @@ public class GraphService implements Runnable{
         JFreeChart chart = ChartFactory.createXYLineChart (
           " Vremena izvrsavanja ", "Broj stupaca od B", "Vrijeme izvrsavanja (milisekunde)", data , PlotOrientation.VERTICAL , true , true , false ) ;
         try{
-        ChartUtilities.saveChartAsPNG(new File ("time.jpg") , chart , 450 , 400) ;
+            ChartUtilities.saveChartAsPNG(new File ("time.png") , chart , 450 , 400) ;
+            frame.add(new JLabel(new ImageIcon( "time.png" ) ) );
         } catch( IOException e ){
             e.printStackTrace();
         }
-        GraphController.drawGraph();
+        //--------------------------------------------------------------
+        /*try {
+            BufferedImage img = ImageIO.read(new File( "time.png" ) );
+            frame.add(new JLabel(new ImageIcon( "time.png" ) ) );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        frame.add(new JLabel(new ImageIcon( "time.png" ) ) );
+        frame.setLocationRelativeTo( null );
+        frame.pack();
+        frame.setVisible( true );
         SampleController.decreaseProcessorNum();
-    }
-    
-    public static void makeGraph( int processorNum ){
-        new Thread( new GraphService( processorNum ) ).start();
     }
 }

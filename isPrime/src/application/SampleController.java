@@ -13,6 +13,7 @@ import Algorithms.Sqrt;
 import Algorithms.StrongPseudo;
 import Algorithms.Wilson;
 import database.DataBase;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -180,8 +181,11 @@ public class SampleController {
     @FXML
     void pseudoButtonOnClick(ActionEvent event) 
     {
-        Stage secondaryStage = new Stage();
+        processorNum += 1;
+        new Thread( new TableMaker( "euler" ) ).start();
+        /*Stage secondaryStage = new Stage();
         try{
+            processorNum += 1;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Table.fxml"));
             TableController controller = new TableController( "euler" );
             loader.setController(controller);
@@ -192,7 +196,7 @@ public class SampleController {
             secondaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
     
     /**
@@ -202,8 +206,11 @@ public class SampleController {
     @FXML
     void strongButtonOnClick( ActionEvent event )
     {
-        Stage secondaryStage = new Stage();
+        processorNum += 1;
+        new Thread( new TableMaker( "strong" ) ).start();
+        /*Stage secondaryStage = new Stage();
         try{
+            processorNum += 1;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Table.fxml"));
             TableController controller = new TableController( "strong" );
             loader.setController(controller);
@@ -214,7 +221,7 @@ public class SampleController {
             secondaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
     
     /**
@@ -223,7 +230,9 @@ public class SampleController {
      */
     @FXML
     void timeButtonOnClick( ActionEvent event ){
-        Stage tertiaryStage = new Stage();
+        processorNum += 1;
+        new Thread( new GraphMaker( processorNum ) ).start();
+        /*Stage tertiaryStage = new Stage();
         try{
             processorNum += 1;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Graph.fxml"));
@@ -236,7 +245,7 @@ public class SampleController {
             tertiaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
     
     /**
