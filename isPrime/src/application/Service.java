@@ -50,7 +50,7 @@ public class Service {
 		}
 		else if(algorithm.equals("wilson"))
 		{
-			str += "> *NOT IMPLEMENTED - Sqrt for now* Wilson algorithm: ";
+			str += "> Wilson algorithm: ";
 		}
 		else if(algorithm.equals("miller"))
 		{

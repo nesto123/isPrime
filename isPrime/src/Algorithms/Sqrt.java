@@ -31,7 +31,7 @@ public class Sqrt implements Callable<Boolean> {
    
    private boolean isPrimeInRange()
    {
-       if( n==2 || n==3 )
+       if( n==2 || n==3 || n==5 )
            return true;
        if( n % 2 == 0 || n < 2 )
            return false;
@@ -52,13 +52,13 @@ public class Sqrt implements Callable<Boolean> {
     */
    public static boolean isPrime(int n, int i ) throws InterruptedException, ExecutionException
    {
-
-       ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()-1);
+       int avalibleProcesses = (int) Math.max(Runtime.getRuntime().availableProcessors()-1, 1);
+       ExecutorService executor = Executors.newFixedThreadPool(avalibleProcesses);
        List<Sqrt> primeCheckers = new ArrayList<>();
-       double processorNum = (double) n / (Runtime.getRuntime().availableProcessors()-i);
+       double processorNum = (double) n / (avalibleProcesses);
        double blockSize = Math.max( processorNum, 1 );
        
-       for (int x=0; x<Runtime.getRuntime().availableProcessors()-1; x++)
+       for (int x=0; x<avalibleProcesses; x++)
        {
            primeCheckers.add(new Sqrt(n,(int) Math.floor(x*blockSize),(int) Math.floor((x+1)*blockSize)));
        }

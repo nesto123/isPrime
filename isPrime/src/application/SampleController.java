@@ -102,7 +102,11 @@ public class SampleController {
             consoleTextArea.appendText("Invalid number input!\n");
             return;
         }
-        
+        if( number < 2 )
+        {
+            consoleTextArea.appendText("Invalid number input!\n");
+            return;
+        }
     	if(squareRootCheckBox.isSelected())
     	{
             try {
@@ -114,16 +118,17 @@ public class SampleController {
                 consoleTextArea.appendText("Square root algotihm time-out!");
             }
         }
-//		NOT IMPLEMENTED YET		--		TO DO...    	
-//    	if(wilsonCheckBox.isSelected())
-//    	{
-//    		try {
-//				boolean test = Sqrt.isPrime( number );
-//				consoleTextArea.appendText(Service.answer(test, "wilson"));
-//    		}catch (InterruptedException | ExecutionException e) {
-//				consoleTextArea.appendText("Wilson algotihm time-out!");
-//			}
-//		}
+    	if(wilsonCheckBox.isSelected())
+    	{
+            try {
+                startTime = System.currentTimeMillis();
+                boolean test = Wilson.isPrime( number );
+                endTime = System.currentTimeMillis();
+                consoleTextArea.appendText(Service.answer(test, "wilson",  endTime - startTime));
+            } catch (ArithmeticException e) {
+                consoleTextArea.appendText("> Wilson test -- Owerflow ! --\n");
+            }
+        }
     	if(millerRabinCheckBox.isSelected())
     	{
             try {

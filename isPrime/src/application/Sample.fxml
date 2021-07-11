@@ -61,11 +61,11 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <Button id="calculateButton" fx:id="calculateButton" mnemonicParsing="false" onAction="#calculateBottunOnClick" maxWidth="1.7976931348623157E308" text="Calculate" GridPane.rowIndex="2" />
+                                          <Button id="calculateButton" fx:id="calculateButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#calculateBottunOnClick" text="Calculate" GridPane.rowIndex="2" />
                                           <Button fx:id="resetButton" maxWidth="1.7976931348623157E308" onAction="#resetBottunOnClick" text="Reset" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Button id="pseudoButton" mnemonicParsing="false" onAction="#pseudoButtonOnClick" maxWidth="1.7976931348623157E308" text="Euler Pseudoprimes" GridPane.rowIndex="1" />
-                                          <Button fx:id="strongButton" mnemonicParsing="false" onAction="#strongButtonOnClick" maxWidth="1.7976931348623157E308" text="Strong pseudoprimes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Button id="timeButton" fx:id="timeCompButton" mnemonicParsing="false" onAction="#timeButtonOnClick" maxWidth="1.7976931348623157E308" text="Time comparisons" GridPane.columnSpan="2147483647" />
+                                          <Button id="pseudoButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pseudoButtonOnClick" text="Euler Pseudoprimes" GridPane.rowIndex="1" />
+                                          <Button fx:id="strongButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#strongButtonOnClick" text="Strong pseudoprimes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Button id="timeButton" fx:id="timeCompButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#timeButtonOnClick" text="Time comparisons" GridPane.columnSpan="2147483647" />
                                        </children>
                                     </GridPane>
                                     <VBox layoutY="-15.0" prefHeight="306.0" prefWidth="290.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
@@ -111,7 +111,7 @@
                                             </rowConstraints>
                                              <children>
                                                 <CheckBox fx:id="squareRootCheckBox" mnemonicParsing="false" selected="true" text="Square root division" />
-                                                <CheckBox id="wilsonCheckBox" fx:id="wilsonCheckBox" mnemonicParsing="false" text="Wilson test" GridPane.rowIndex="1" />
+                                                <CheckBox id="wilsonCheckBox" fx:id="wilsonCheckBox" mnemonicParsing="false" selected="true" text="Wilson test" GridPane.rowIndex="1" />
                                                 <CheckBox fx:id="millerRabinCheckBox" mnemonicParsing="false" selected="true" text="Miller-Rabin test" GridPane.rowIndex="2" />
                                                 <CheckBox fx:id="solovayCheckBox" mnemonicParsing="false" selected="true" text="Solovay-Strassen test" GridPane.rowIndex="3" />
                                                 <Label text="Accuracy:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
