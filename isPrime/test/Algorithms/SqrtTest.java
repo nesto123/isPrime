@@ -33,12 +33,16 @@ public class SqrtTest {
     @Test
     public void testIsPrime() throws Exception {
         System.out.println("isPrime");
-        int n = 101, n2 = 49;
-        boolean expResult = true, er2 = false;
-        boolean result = Sqrt.isPrime(n, 1 );
-        boolean res2 = Sqrt.isPrime( n2, 1 );
-        assertEquals(expResult, result);
-        assertEquals( er2, res2 );
+        int[] primes = new int[]{ 73, 283, 661, 1381, 2011, 2437, 4423, 6197, 7001, 7829 };
+        int[] complex = new int[]{ 77, 289, 663, 1382, 2010, 2439, 4422, 6195, 7009, 7827 };
+        boolean expResultPrime = true;
+        boolean expResultComplex = false;
+        for( int i = 0; i < 9; i++ ){
+            boolean resultPrime = Sqrt.isPrime( primes[i], 1 );
+            boolean resultComplex = Sqrt.isPrime( complex[i], 1 );
+            assertEquals( expResultPrime, resultPrime );
+            assertEquals( expResultComplex, resultComplex );
+        }
     }
 
     /**

@@ -36,7 +36,7 @@ public class Wilson {
             return false;
         int test =  (fact(this.num >> 1) % this.num);
         if( test == -1)
-            throw new ArithmeticException("owerflow");
+            throw new ArithmeticException("overflow");
         return (fact(this.num >> 1) % this.num) != 0;
     }
     
